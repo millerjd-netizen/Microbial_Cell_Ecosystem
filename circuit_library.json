@@ -1,0 +1,445 @@
+[
+  {
+    "circuit_id": "StrainAGsulfurreducens",
+    "organism": "G. sulfurreducens",
+    "description": "Tryptophan biosynthesis auxotrophic strain for G. sulfurreducens to enforce cross-feeding cooperation",
+    "genes": [
+      "trpB"
+    ],
+    "promoters": [
+      "Ptrc"
+    ],
+    "knox_spec": "Ptrc then RBS2 then trpB then Term2",
+    "categories": {
+      "electron_donation": 2,
+      "auxotrophic_crossfeeding": 8,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 1
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "RBS1 replaced with RBS2, Term1 replaced with Term2. G. sulfurreducens requires Geobacter-specific translational machinery.",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "StrainBGmetallireducens",
+    "organism": "G. metallireducens",
+    "description": "Leucine biosynthesis auxotrophic strain for G. metallireducens under nitrogen-fixing promoter",
+    "genes": [
+      "leuA"
+    ],
+    "promoters": [
+      "PnifH"
+    ],
+    "knox_spec": "PnifH then RBS2 then leuA then Term2",
+    "categories": {
+      "electron_donation": 1,
+      "auxotrophic_crossfeeding": 8,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 1
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "KillSwitchStrainA",
+    "organism": "G. sulfurreducens",
+    "description": "MazEF toxin-antitoxin kill switch for G. sulfurreducens. Constitutive antitoxin (mazE) with inducible toxin (mazF) under Prep",
+    "genes": [
+      "mazE",
+      "mazF"
+    ],
+    "promoters": [
+      "Pconst",
+      "Prep"
+    ],
+    "knox_spec": "Pconst then RBS2 then mazE then Term2 then Prep then RBS2 then mazF then Term2",
+    "categories": {
+      "electron_donation": 1,
+      "auxotrophic_crossfeeding": 1,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 9
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "All RBS1 replaced with RBS2, all Term1 replaced with Term2. Geobacter organism requires Geobacter-specific parts.",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "KillSwitchStrainB",
+    "organism": "G. metallireducens",
+    "description": "MazEF toxin-antitoxin kill switch for G. metallireducens. Constitutive antitoxin (mazE) with inducible toxin (mazF) under Prep",
+    "genes": [
+      "mazE",
+      "mazF"
+    ],
+    "promoters": [
+      "Pconst",
+      "Prep"
+    ],
+    "knox_spec": "Pconst then RBS2 then mazE then Term2 then Prep then RBS2 then mazF then Term2",
+    "categories": {
+      "electron_donation": 1,
+      "auxotrophic_crossfeeding": 1,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 9
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "OmcZBoosterStrainA",
+    "organism": "G. sulfurreducens",
+    "description": "OmcZ outer membrane cytochrome overexpression to boost electron transfer to MFC anode in G. sulfurreducens",
+    "genes": [
+      "omcZ"
+    ],
+    "promoters": [
+      "PomcZ"
+    ],
+    "knox_spec": "PomcZ then RBS2 then omcZ then Term2",
+    "categories": {
+      "electron_donation": 9,
+      "auxotrophic_crossfeeding": 1,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 1
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "RBS1 replaced with RBS2, Term1 replaced with Term2. G. sulfurreducens is Geobacter requiring Geobacter-specific parts.",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "OmcZBoosterStrainB",
+    "organism": "G. metallireducens",
+    "description": "OmcZ outer membrane cytochrome overexpression to boost electron transfer to MFC anode in G. metallireducens",
+    "genes": [
+      "omcZ"
+    ],
+    "promoters": [
+      "PomcZ"
+    ],
+    "knox_spec": "PomcZ then RBS2 then omcZ then Term2",
+    "categories": {
+      "electron_donation": 9,
+      "auxotrophic_crossfeeding": 1,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 1
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "EcoliLcircuit",
+    "organism": "E. coli",
+    "description": "Polycistronic leucine biosynthesis operon in E. coli encoding leuB, leuC, leuD to create leucine auxotrophy for cross-feeding",
+    "genes": [
+      "leuB",
+      "leuC",
+      "leuD"
+    ],
+    "promoters": [
+      "Ptrc"
+    ],
+    "knox_spec": "Ptrc then RBS1 then leuB then leuC then leuD then Term1",
+    "categories": {
+      "electron_donation": 1,
+      "auxotrophic_crossfeeding": 9,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 1
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "Added Ptrc, RBS1, Term1. Original spec was bare CDS list with no regulatory elements.",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "EcoliKcircuit",
+    "organism": "E. coli",
+    "description": "Polycistronic lysine/arginine biosynthesis operon in E. coli encoding lysC and argD for auxotrophic cross-feeding",
+    "genes": [
+      "lysC",
+      "argD"
+    ],
+    "promoters": [
+      "Ptrc"
+    ],
+    "knox_spec": "Ptrc then RBS1 then lysC then argD then Term1",
+    "categories": {
+      "electron_donation": 1,
+      "auxotrophic_crossfeeding": 8,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 1
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "Added Ptrc, RBS1, Term1. Original spec was bare CDS list with no regulatory elements.",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "OmcZ_KillSwitch_Geobacter",
+    "organism": "G. sulfurreducens",
+    "description": "Combo: OmcZ electron transfer booster combined with MazEF kill switch. High electron donation and evolutionary resistance in G. sulfurreducens.",
+    "genes": [
+      "omcZ",
+      "mazE",
+      "mazF"
+    ],
+    "promoters": [
+      "PomcZ",
+      "Pconst",
+      "Prep"
+    ],
+    "knox_spec": "PomcZ then RBS2 then omcZ then Term2 then Pconst then RBS2 then mazE then Term2 then Prep then RBS2 then mazF then Term2",
+    "categories": {
+      "electron_donation": 9,
+      "auxotrophic_crossfeeding": 1,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 9
+    },
+    "combo_of": [
+      "OmcZBoosterStrainA",
+      "KillSwitchStrainA"
+    ],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "Leu_KillSwitch_Ecoli",
+    "organism": "E. coli",
+    "description": "Combo: Leucine biosynthesis operon combined with MazEF kill switch. High cross-feeding and evolutionary resistance in E. coli.",
+    "genes": [
+      "leuB",
+      "leuC",
+      "leuD",
+      "mazE",
+      "mazF"
+    ],
+    "promoters": [
+      "Ptrc",
+      "Pconst",
+      "Prep"
+    ],
+    "knox_spec": "Ptrc then RBS1 then leuB then leuC then leuD then Term1 then Pconst then RBS1 then mazE then Term1 then Prep then RBS1 then mazF then Term1",
+    "categories": {
+      "electron_donation": 1,
+      "auxotrophic_crossfeeding": 9,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 9
+    },
+    "combo_of": [
+      "EcoliLcircuit",
+      "KillSwitchStrainA"
+    ],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "OmcZ_Trp_Geobacter",
+    "organism": "G. sulfurreducens",
+    "description": "Combo: OmcZ electron transfer booster combined with trpB tryptophan secretion. High electron donation and auxotrophic cross-feeding in G. sulfurreducens.",
+    "genes": [
+      "omcZ",
+      "trpB"
+    ],
+    "promoters": [
+      "PomcZ",
+      "Ptrc"
+    ],
+    "knox_spec": "PomcZ then RBS2 then omcZ then Term2 then Ptrc then RBS2 then trpB then Term2",
+    "categories": {
+      "electron_donation": 9,
+      "auxotrophic_crossfeeding": 8,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 1
+    },
+    "combo_of": [
+      "OmcZBoosterStrainA",
+      "StrainAGsulfurreducens"
+    ],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "Hyd_KillSwitch_Ecoli",
+    "organism": "E. coli",
+    "description": "Combo: Hydrogenase hydA under Phyd combined with MazEF kill switch. High hydrogen generation and evolutionary resistance in E. coli.",
+    "genes": [
+      "hydA",
+      "mazE",
+      "mazF"
+    ],
+    "promoters": [
+      "Phyd",
+      "Pconst",
+      "Prep"
+    ],
+    "knox_spec": "Phyd then RBS1 then hydA then Term1 then Pconst then RBS1 then mazE then Term1 then Prep then RBS1 then mazF then Term1",
+    "categories": {
+      "electron_donation": 2,
+      "auxotrophic_crossfeeding": 1,
+      "hydrogen_generation": 9,
+      "evolutionary_resistance": 9
+    },
+    "combo_of": [
+      "EcoliKcircuit",
+      "KillSwitchStrainB"
+    ],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": "hydA requires maturase proteins HydE, HydF, HydG for function. Circuit is syntactically valid but biologically incomplete without co-expression of maturases."
+  },
+  {
+    "circuit_id": "HyaB_ElectronMed_Geobacter",
+    "organism": "G. metallireducens",
+    "description": "Medium electron donation: periplasmic hydrogenase hyaB under PnifH. Contributes indirectly to electron flow via H2 cycling, weaker than direct OmcZ-mediated anode transfer.",
+    "genes": [
+      "hyaB"
+    ],
+    "promoters": [
+      "PnifH"
+    ],
+    "knox_spec": "PnifH then RBS2 then hyaB then Term2",
+    "categories": {
+      "electron_donation": 5,
+      "auxotrophic_crossfeeding": 1,
+      "hydrogen_generation": 6,
+      "evolutionary_resistance": 1
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": "hyaB electron donation and hydrogen generation scores are biologically entangled \u2014 this circuit does not cleanly separate those two traits."
+  },
+  {
+    "circuit_id": "MazE_Only_Ecoli",
+    "organism": "E. coli",
+    "description": "Medium evolutionary resistance: constitutive antitoxin mazE only, without mazF toxin. Slows cheater takeover but does not actively kill cheaters.",
+    "genes": [
+      "mazE"
+    ],
+    "promoters": [
+      "Pconst"
+    ],
+    "knox_spec": "Pconst then RBS1 then mazE then Term1",
+    "categories": {
+      "electron_donation": 1,
+      "auxotrophic_crossfeeding": 1,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 5
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "MazE_Only_Geobacter",
+    "organism": "G. sulfurreducens",
+    "description": "Medium evolutionary resistance: constitutive antitoxin mazE only in Geobacter, without mazF toxin. Slows cheater takeover via antitoxin pressure without active killing.",
+    "genes": [
+      "mazE"
+    ],
+    "promoters": [
+      "Pconst"
+    ],
+    "knox_spec": "Pconst then RBS2 then mazE then Term2",
+    "categories": {
+      "electron_donation": 1,
+      "auxotrophic_crossfeeding": 1,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 5
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "LeuA_Partial_Ecoli",
+    "organism": "E. coli",
+    "description": "Medium auxotrophic cross-feeding: single leuA enzyme only. Partial leucine pathway \u2014 weaker cross-feeding dependency than full leuBCD operon.",
+    "genes": [
+      "leuA"
+    ],
+    "promoters": [
+      "Ptrc"
+    ],
+    "knox_spec": "Ptrc then RBS1 then leuA then Term1",
+    "categories": {
+      "electron_donation": 1,
+      "auxotrophic_crossfeeding": 5,
+      "hydrogen_generation": 1,
+      "evolutionary_resistance": 1
+    },
+    "combo_of": [],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": "leuA alone accumulates 2-isopropylmalate intermediate but cannot complete leucine synthesis without leuC/leuD/leuB. Cross-feeding signal is indirect. Wet-lab validation recommended."
+  },
+  {
+    "circuit_id": "OmcZ_Hyd_Geobacter",
+    "organism": "G. sulfurreducens",
+    "description": "Combo: OmcZ electron transfer booster combined with hyaB hydrogenase. High electron donation and high hydrogen generation in G. sulfurreducens.",
+    "genes": [
+      "omcZ",
+      "hyaB"
+    ],
+    "promoters": [
+      "PomcZ",
+      "PnifH"
+    ],
+    "knox_spec": "PomcZ then RBS2 then omcZ then Term2 then PnifH then RBS2 then hyaB then Term2",
+    "categories": {
+      "electron_donation": 9,
+      "auxotrophic_crossfeeding": 1,
+      "hydrogen_generation": 8,
+      "evolutionary_resistance": 1
+    },
+    "combo_of": [
+      "OmcZBoosterStrainA",
+      "HyaB_ElectronMed_Geobacter"
+    ],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": null
+  },
+  {
+    "circuit_id": "Leu_Hyd_Ecoli",
+    "organism": "E. coli",
+    "description": "Combo: Full leucine biosynthesis operon combined with hydA hydrogenase. High auxotrophic cross-feeding and high hydrogen generation in E. coli.",
+    "genes": [
+      "leuB",
+      "leuC",
+      "leuD",
+      "hydA"
+    ],
+    "promoters": [
+      "Ptrc",
+      "Phyd"
+    ],
+    "knox_spec": "Ptrc then RBS1 then leuB then leuC then leuD then Term1 then Phyd then RBS1 then hydA then Term1",
+    "categories": {
+      "electron_donation": 1,
+      "auxotrophic_crossfeeding": 9,
+      "hydrogen_generation": 9,
+      "evolutionary_resistance": 1
+    },
+    "combo_of": [
+      "EcoliLcircuit",
+      "Hyd_KillSwitch_Ecoli"
+    ],
+    "verified": true,
+    "corrections_made": "none",
+    "biological_warning": "hydA requires maturase proteins HydE, HydF, HydG for function. Circuit is syntactically valid but biologically incomplete without co-expression of maturases."
+  }
+]
