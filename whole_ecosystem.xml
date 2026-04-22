@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model id="whole_ecosystem" name="Whole Ecosystem Reduced Model">
+    <listOfCompartments>
+      <compartment id="cell" constant="true" size="1"/>
+    </listOfCompartments>
+
+    <listOfParameters>
+      <parameter id="k_trp_prod"  value="0.15" constant="true"/>
+      <parameter id="k_leu_prod"  value="0.15" constant="true"/>
+      <parameter id="k_GA_growth" value="0.04" constant="true"/>
+      <parameter id="k_GB_growth" value="0.04" constant="true"/>
+      <parameter id="k_GA_death"  value="0.15" constant="true"/>
+      <parameter id="k_GB_death"  value="0.15" constant="true"/>
+      <parameter id="k_current"   value="0.02" constant="true"/>
+      <parameter id="boostA"      value="1.5"  constant="true"/>
+      <parameter id="boostB"      value="1.3"  constant="true"/>
+      <parameter id="k_nh4_no2"   value="0.15" constant="true"/>
+      <parameter id="k_no2_no3"   value="0.12" constant="true"/>
+      <parameter id="k_no3_n2"    value="0.08" constant="true"/>
+    </listOfParameters>
+
+    <listOfSpecies>
+      <species id="GA"      compartment="cell" initialAmount="1"  hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="GB"      compartment="cell" initialAmount="1"  hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="Trp"     compartment="cell" initialAmount="0"  hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="Leu"     compartment="cell" initialAmount="0"  hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="Current" compartment="cell" initialAmount="0"  hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="NH4"     compartment="cell" initialAmount="10" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="NO2"     compartment="cell" initialAmount="0"  hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="NO3"     compartment="cell" initialAmount="0"  hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="N2"      compartment="cell" initialAmount="0"  hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+
+    <listOfReactions>
+
+      <reaction id="r_trp_prod" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="GA" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="GA"  stoichiometry="1" constant="true"/>
+          <speciesReference species="Trp" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><times/><ci>k_trp_prod</ci><ci>GA</ci></apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+
+      <reaction id="r_leu_prod" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="GB" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="GB"  stoichiometry="1" constant="true"/>
+          <speciesReference species="Leu" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><times/><ci>k_leu_prod</ci><ci>GB</ci></apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+
+      <reaction id="r_GA_growth" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="GA"  stoichiometry="1" constant="true"/>
+          <speciesReference species="Leu" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="GA" stoichiometry="2" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><times/><ci>k_GA_growth</ci><ci>GA</ci><ci>Leu</ci></apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+
+      <reaction id="r_GB_growth" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="GB"  stoichiometry="1" constant="true"/>
+          <speciesReference species="Trp" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="GB" stoichiometry="2" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><times/><ci>k_GB_growth</ci><ci>GB</ci><ci>Trp</ci></apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+
+      <reaction id="r_GA_death" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="GA" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Current" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><times/><ci>k_GA_death</ci><ci>GA</ci></apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+
+      <reaction id="r_GB_death" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="GB" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Current" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><times/><ci>k_GB_death</ci><ci>GB</ci></apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+
+      <reaction id="r_current" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="GA" stoichiometry="1" constant="true"/>
+          <speciesReference species="GB" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="GA"      stoichiometry="1" constant="true"/>
+          <speciesReference species="GB"      stoichiometry="1" constant="true"/>
+          <speciesReference species="Current" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci>k_current</ci>
+              <ci>boostA</ci>
+              <ci>boostB</ci>
+              <ci>GA</ci>
+              <ci>GB</ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+
+      <reaction id="r_nh4_to_no2" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="NH4" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NO2" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><times/><ci>k_nh4_no2</ci><ci>NH4</ci></apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+
+      <reaction id="r_no2_to_no3" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="NO2" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NO3" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><times/><ci>k_no2_no3</ci><ci>NO2</ci></apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+
+      <reaction id="r_no3_to_n2" reversible="false" fast="false">
+        <listOfReactants>
+          <speciesReference species="NO3" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="N2" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><times/><ci>k_no3_n2</ci><ci>NO3</ci></apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+
+    </listOfReactions>
+  </model>
+</sbml>
