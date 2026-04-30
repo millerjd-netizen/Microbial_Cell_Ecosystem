@@ -1,6 +1,9 @@
 # 🧬 Microbial Cell Ecosystem — BE/EC 552 Final Project
 
-Link to GUI =  https://drive.google.com/file/d/1fkGXUAURPrRnMzy8daeBeuhb-3OqhaXZ/view?usp=sharing
+Link to GUI =  
+
+https://binary-depth-63163549.figma.site/
+
 
 **Spring 2026 · Prof. Douglas Densmore**
 **Team:** Jonathan · Jaleel · William · Nora
