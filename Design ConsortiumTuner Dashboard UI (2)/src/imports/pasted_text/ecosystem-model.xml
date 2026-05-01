@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" level="3" version="2">
+  <model id="whole_ecosystem_20circuits" name="Whole Ecosystem Model - 20 Circuits">
+    <listOfCompartments>
+      <compartment id="cell" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="Ecoli_K" compartment="cell" initialAmount="1.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- Lys-producer, Leu-auxotroph -->
+      <species id="Ecoli_L" compartment="cell" initialAmount="1.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- Leu-producer, Lys-auxotroph -->
+      <species id="Ecoli_Trp" compartment="cell" initialAmount="1.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- Trp-producer, His-auxotroph -->
+      <species id="Ecoli_His" compartment="cell" initialAmount="1.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- His-producer, Trp-auxotroph -->
+      <species id="Lys" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- lysine pool -->
+      <species id="Leu" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- leucine pool -->
+      <species id="Trp" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- tryptophan pool -->
+      <species id="His" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- histidine pool -->
+      <species id="Gsulf" compartment="cell" initialAmount="1.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- Geobacter sulfurreducens (Strain A) -->
+      <species id="Gmet" compartment="cell" initialAmount="1.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- Geobacter metallireducens (Strain B) -->
+      <species id="Acs" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- acetyl-CoA synthetase from Gsulf -->
+      <species id="OmcZ_A" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- OmcZ cytochrome in Strain A (from booster) -->
+      <species id="OmcZ_B" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- OmcZ cytochrome in Strain B (from booster+PnirH) -->
+      <species id="Current" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- electrical output -->
+      <species id="MazE_A" compartment="cell" initialAmount="5.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- antitoxin in Strain A (constitutive Pconst) -->
+      <species id="MazF_A" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- toxin in Strain A (Prep-induced) -->
+      <species id="MazE_B" compartment="cell" initialAmount="5.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- antitoxin in Strain B -->
+      <species id="MazF_B" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- toxin in Strain B -->
+      <species id="KillSignal" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- trigger for Prep-driven toxin (e.g. AHL threshold) -->
+      <species id="AHL" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- N-acyl homoserine lactone from LuxI -->
+      <species id="LuxR_AHL" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- activated LuxR-AHL complex -->
+      <species id="AI2" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- autoinducer-2 from LuxS -->
+      <species id="NH4" compartment="cell" initialAmount="10.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- ammonium (substrate) -->
+      <species id="NO2" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- nitrite -->
+      <species id="NO3" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- nitrate -->
+      <species id="NO" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- nitric oxide -->
+      <species id="N2O" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- nitrous oxide -->
+      <species id="N2" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- dinitrogen (terminal) -->
+      <species id="AcetylCoA" compartment="cell" initialAmount="5.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- central-carbon precursor pool -->
+      <species id="MalonylCoA" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- malonyl-CoA (fapR/fabH circuit) -->
+      <species id="Naringenin" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- flavonoid (TAL/4CL/CHS/CHI) -->
+      <species id="Isoprenoid" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- IPP/FPP precursor (atoB/HMGS/HMGR) -->
+      <species id="BetaCarotene" compartment="cell" initialAmount="0.0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>  <!-- carotenoid (crtE/crtB/crtI) -->
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="k_K_lys" value="0.15" constant="true"/>  <!-- Ecoli_K Lys production -->
+      <parameter id="k_L_leu" value="0.15" constant="true"/>  <!-- Ecoli_L Leu production -->
+      <parameter id="k_Trp_trp" value="0.15" constant="true"/>  <!-- Ecoli_Trp Trp production -->
+      <parameter id="k_His_his" value="0.15" constant="true"/>  <!-- Ecoli_His His production -->
+      <parameter id="k_K_grow" value="0.04" constant="true"/>  <!-- Ecoli_K growth on Leu -->
+      <parameter id="k_L_grow" value="0.04" constant="true"/>  <!-- Ecoli_L growth on Lys -->
+      <parameter id="k_Trp_grow" value="0.04" constant="true"/>  <!-- Ecoli_Trp growth on His -->
+      <parameter id="k_His_grow" value="0.04" constant="true"/>  <!-- Ecoli_His growth on Trp -->
+      <parameter id="k_K_death" value="0.05" constant="true"/>
+      <parameter id="k_L_death" value="0.05" constant="true"/>
+      <parameter id="k_Trp_death" value="0.05" constant="true"/>
+      <parameter id="k_His_death" value="0.05" constant="true"/>
+      <parameter id="k_Gsulf_grow" value="0.03" constant="true"/>  <!-- Gsulf basal growth -->
+      <parameter id="k_Gmet_grow" value="0.03" constant="true"/>  <!-- Gmet basal growth -->
+      <parameter id="k_Gsulf_death" value="0.1" constant="true"/>
+      <parameter id="k_Gmet_death" value="0.1" constant="true"/>
+      <parameter id="k_acs" value="0.1" constant="true"/>  <!-- StrainA_Gsulfurreducens: acs expression -->
+      <parameter id="k_omcZ_B_basal" value="0.05" constant="true"/>  <!-- StrainB_Gmetalireducens: omcZ under PnirH -->
+      <parameter id="k_omcZ_boost_A" value="0.2" constant="true"/>  <!-- OmcZ_Booster_StrainA -->
+      <parameter id="k_omcZ_boost_B" value="0.2" constant="true"/>  <!-- OmcZ_Booster_StrainB -->
+      <parameter id="k_current" value="0.02" constant="true"/>  <!-- base current rate -->
+      <parameter id="k_NO_induces_omcZ" value="0.08" constant="true"/>  <!-- NO -> extra omcZ_B induction (PnirH) -->
+      <parameter id="k_mazE_A" value="0.1" constant="true"/>  <!-- constitutive Pconst -> mazE in A -->
+      <parameter id="k_mazE_B" value="0.1" constant="true"/>  <!-- constitutive Pconst -> mazE in B -->
+      <parameter id="k_mazF_A" value="0.15" constant="true"/>  <!-- KillSignal -> mazF in A (Prep) -->
+      <parameter id="k_mazF_B" value="0.15" constant="true"/>  <!-- KillSignal -> mazF in B -->
+      <parameter id="k_antitox" value="0.5" constant="true"/>  <!-- MazE neutralizes MazF -->
+      <parameter id="k_tox_kill" value="0.25" constant="true"/>  <!-- free MazF kills carrier strain -->
+      <parameter id="k_mazE_deg" value="0.05" constant="true"/>  <!-- MazE basal degradation -->
+      <parameter id="k_luxI" value="0.05" constant="true"/>  <!-- LuxI AHL production (in Gsulf) -->
+      <parameter id="k_luxS" value="0.05" constant="true"/>  <!-- LuxS AI-2 production (in Gmet) -->
+      <parameter id="k_luxR_act" value="0.1" constant="true"/>  <!-- AHL activation of LuxR -->
+      <parameter id="k_killsig" value="0.05" constant="true"/>  <!-- LuxR-AHL -> KillSignal -->
+      <parameter id="k_AHL_deg" value="0.02" constant="true"/>
+      <parameter id="k_AI2_deg" value="0.02" constant="true"/>
+      <parameter id="k_killsig_deg" value="0.05" constant="true"/>
+      <parameter id="k_nitrosomonas" value="0.15" constant="true"/>  <!-- amoA/hao : NH4 -> NO2 -->
+      <parameter id="k_nitrobacter" value="0.12" constant="true"/>  <!-- nxrA : NO2 -> NO3 -->
+      <parameter id="k_pseud_narG" value="0.1" constant="true"/>  <!-- Pseudomonas narG : NO3 -> NO2 -->
+      <parameter id="k_pseud_nirS" value="0.1" constant="true"/>  <!-- Pseudomonas nirS : NO2 -> NO -->
+      <parameter id="k_parac_norB" value="0.1" constant="true"/>  <!-- Paracoccus norB : NO -> N2O -->
+      <parameter id="k_parac_nosZ" value="0.1" constant="true"/>  <!-- Paracoccus nosZ : N2O -> N2 -->
+      <parameter id="k_malCoA" value="0.08" constant="true"/>  <!-- fapR/fabH : AcetylCoA -> MalonylCoA -->
+      <parameter id="k_naringenin" value="0.06" constant="true"/>  <!-- TAL/4CL/CHS/CHI : MalonylCoA -> Naringenin -->
+      <parameter id="k_isoprenoid" value="0.08" constant="true"/>  <!-- atoB/HMGS/HMGR : AcetylCoA -> Isoprenoid -->
+      <parameter id="k_betacarot" value="0.06" constant="true"/>  <!-- crtE/crtB/crtI : Isoprenoid -> BetaCarotene -->
+    </listOfParameters>
+    <listOfReactions>
+      <!-- Ecoli_K circuit: lysC+argD+lysA -> Lys -->
+      <reaction id="r_K_lys" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_K" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ecoli_K" stoichiometry="1" constant="true"/>
+          <speciesReference species="Lys" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_K_lys</ci><ci>Ecoli_K</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Ecoli_L circuit: leuB+leuC+leuD -> Leu -->
+      <reaction id="r_L_leu" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_L" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ecoli_L" stoichiometry="1" constant="true"/>
+          <speciesReference species="Leu" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_L_leu</ci><ci>Ecoli_L</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Ecoli_Trp circuit: trpB+trpA -> Trp -->
+      <reaction id="r_Trp_prod" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_Trp" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ecoli_Trp" stoichiometry="1" constant="true"/>
+          <speciesReference species="Trp" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_Trp_trp</ci><ci>Ecoli_Trp</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Ecoli_His circuit: hisC+hisD -> His -->
+      <reaction id="r_His_prod" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_His" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ecoli_His" stoichiometry="1" constant="true"/>
+          <speciesReference species="His" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_His_his</ci><ci>Ecoli_His</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- K auxotrophic growth on Leu from L -->
+      <reaction id="r_K_grow" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_K" stoichiometry="1" constant="true"/>
+          <speciesReference species="Leu" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ecoli_K" stoichiometry="2" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><ci>k_K_grow</ci><ci>Ecoli_K</ci></apply><ci>Leu</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- L auxotrophic growth on Lys from K -->
+      <reaction id="r_L_grow" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_L" stoichiometry="1" constant="true"/>
+          <speciesReference species="Lys" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ecoli_L" stoichiometry="2" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><ci>k_L_grow</ci><ci>Ecoli_L</ci></apply><ci>Lys</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Trp strain grows on His from Ecoli_His -->
+      <reaction id="r_Trp_grow" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_Trp" stoichiometry="1" constant="true"/>
+          <speciesReference species="His" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ecoli_Trp" stoichiometry="2" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><ci>k_Trp_grow</ci><ci>Ecoli_Trp</ci></apply><ci>His</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- His strain grows on Trp from Ecoli_Trp -->
+      <reaction id="r_His_grow" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_His" stoichiometry="1" constant="true"/>
+          <speciesReference species="Trp" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Ecoli_His" stoichiometry="2" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><ci>k_His_grow</ci><ci>Ecoli_His</ci></apply><ci>Trp</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r_K_death" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_K" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_K_death</ci><ci>Ecoli_K</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r_L_death" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_L" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_L_death</ci><ci>Ecoli_L</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r_Trp_death" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_Trp" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_Trp_death</ci><ci>Ecoli_Trp</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r_His_death" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Ecoli_His" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_His_death</ci><ci>Ecoli_His</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Gsulf basal growth -->
+      <reaction id="r_Gsulf_grow" reversible="false">
+        <listOfProducts>
+          <speciesReference species="Gsulf" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_Gsulf_grow</ci><ci>Gsulf</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Gmet basal growth -->
+      <reaction id="r_Gmet_grow" reversible="false">
+        <listOfProducts>
+          <speciesReference species="Gmet" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_Gmet_grow</ci><ci>Gmet</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r_Gsulf_death" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Gsulf" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_Gsulf_death</ci><ci>Gsulf</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r_Gmet_death" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Gmet" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_Gmet_death</ci><ci>Gmet</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- StrainA_Gsulfurreducens circuit: Ptrc->acs -->
+      <reaction id="r_acs_prod" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Gsulf" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Gsulf" stoichiometry="1" constant="true"/>
+          <speciesReference species="Acs" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_acs</ci><ci>Gsulf</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- StrainB_Gmetalireducens circuit: PnirH->omcZ basal -->
+      <reaction id="r_omcZ_B_basal" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Gmet" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Gmet" stoichiometry="1" constant="true"/>
+          <speciesReference species="OmcZ_B" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_omcZ_B_basal</ci><ci>Gmet</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- PnirH is NO-responsive: NO induces extra omcZ -->
+      <reaction id="r_omcZ_B_induced" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Gmet" stoichiometry="1" constant="true"/>
+          <speciesReference species="NO" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Gmet" stoichiometry="1" constant="true"/>
+          <speciesReference species="OmcZ_B" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><ci>k_NO_induces_omcZ</ci><ci>Gmet</ci></apply><ci>NO</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- OmcZ_Booster_StrainA: extra PomcZ->omcZ -->
+      <reaction id="r_omcZ_boost_A" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Gsulf" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Gsulf" stoichiometry="1" constant="true"/>
+          <speciesReference species="OmcZ_A" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_omcZ_boost_A</ci><ci>Gsulf</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- OmcZ_Booster_StrainB: extra PomcZ->omcZ -->
+      <reaction id="r_omcZ_boost_B" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Gmet" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Gmet" stoichiometry="1" constant="true"/>
+          <speciesReference species="OmcZ_B" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_omcZ_boost_B</ci><ci>Gmet</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- electrogenic co-culture, boosted by OmcZ -->
+      <reaction id="r_current" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Gsulf" stoichiometry="1" constant="true"/>
+          <speciesReference species="Gmet" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Gsulf" stoichiometry="1" constant="true"/>
+          <speciesReference species="Gmet" stoichiometry="1" constant="true"/>
+          <speciesReference species="Current" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="OmcZ_A"/>
+          <modifierSpeciesReference species="OmcZ_B"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><apply><times/><apply><times/><ci>k_current</ci><ci>Gsulf</ci></apply><ci>Gmet</ci></apply><apply><plus/><cn type='integer'>1</cn><ci>OmcZ_A</ci></apply></apply><apply><plus/><cn type='integer'>1</cn><ci>OmcZ_B</ci></apply></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- KillSwitch_StrainA: Pconst->mazE -->
+      <reaction id="r_mazE_A" reversible="false">
+        <listOfProducts>
+          <speciesReference species="MazE_A" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Gsulf"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_mazE_A</ci><ci>Gsulf</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- KillSwitch_StrainA: Prep->mazF triggered by KillSignal -->
+      <reaction id="r_mazF_A" reversible="false">
+        <listOfReactants>
+          <speciesReference species="KillSignal" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="KillSignal" stoichiometry="1" constant="true"/>
+          <speciesReference species="MazF_A" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Gsulf"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><ci>k_mazF_A</ci><ci>KillSignal</ci></apply><ci>Gsulf</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- MazE neutralizes MazF in A -->
+      <reaction id="r_antitox_A" reversible="false">
+        <listOfReactants>
+          <speciesReference species="MazE_A" stoichiometry="1" constant="true"/>
+          <speciesReference species="MazF_A" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><ci>k_antitox</ci><ci>MazE_A</ci></apply><ci>MazF_A</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- free MazF kills Strain A -->
+      <reaction id="r_kill_A" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Gsulf" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="MazF_A"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><ci>k_tox_kill</ci><ci>MazF_A</ci></apply><ci>Gsulf</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r_mazE_A_deg" reversible="false">
+        <listOfReactants>
+          <speciesReference species="MazE_A" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_mazE_deg</ci><ci>MazE_A</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- KillSwitch_StrainB: Pconst->mazE -->
+      <reaction id="r_mazE_B" reversible="false">
+        <listOfProducts>
+          <speciesReference species="MazE_B" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Gmet"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_mazE_B</ci><ci>Gmet</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- KillSwitch_StrainB: Prep->mazF triggered by KillSignal -->
+      <reaction id="r_mazF_B" reversible="false">
+        <listOfReactants>
+          <speciesReference species="KillSignal" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="KillSignal" stoichiometry="1" constant="true"/>
+          <speciesReference species="MazF_B" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Gmet"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><ci>k_mazF_B</ci><ci>KillSignal</ci></apply><ci>Gmet</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- MazE neutralizes MazF in B -->
+      <reaction id="r_antitox_B" reversible="false">
+        <listOfReactants>
+          <speciesReference species="MazE_B" stoichiometry="1" constant="true"/>
+          <speciesReference species="MazF_B" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><ci>k_antitox</ci><ci>MazE_B</ci></apply><ci>MazF_B</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- free MazF kills Strain B -->
+      <reaction id="r_kill_B" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Gmet" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="MazF_B"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><apply><times/><ci>k_tox_kill</ci><ci>MazF_B</ci></apply><ci>Gmet</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r_mazE_B_deg" reversible="false">
+        <listOfReactants>
+          <speciesReference species="MazE_B" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_mazE_deg</ci><ci>MazE_B</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Luxl_LuxR: LuxI in Strain A -> AHL -->
+      <reaction id="r_AHL_prod" reversible="false">
+        <listOfProducts>
+          <speciesReference species="AHL" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Gsulf"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_luxI</ci><ci>Gsulf</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Luxl_LuxR: AHL binds LuxR -->
+      <reaction id="r_LuxR_bind" reversible="false">
+        <listOfReactants>
+          <speciesReference species="AHL" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="LuxR_AHL" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_luxR_act</ci><ci>AHL</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- LuxR-AHL drives Prep -> KillSignal (links QS to kill switch) -->
+      <reaction id="r_killsig_prod" reversible="false">
+        <listOfReactants>
+          <speciesReference species="LuxR_AHL" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="LuxR_AHL" stoichiometry="1" constant="true"/>
+          <speciesReference species="KillSignal" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_killsig</ci><ci>LuxR_AHL</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r_AHL_deg" reversible="false">
+        <listOfReactants>
+          <speciesReference species="AHL" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_AHL_deg</ci><ci>AHL</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r_killsig_deg" reversible="false">
+        <listOfReactants>
+          <speciesReference species="KillSignal" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_killsig_deg</ci><ci>KillSignal</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- LuxS circuit: Ptrc->luxS -> AI-2 -->
+      <reaction id="r_AI2_prod" reversible="false">
+        <listOfProducts>
+          <speciesReference species="AI2" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Gmet"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_luxS</ci><ci>Gmet</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r_AI2_deg" reversible="false">
+        <listOfReactants>
+          <speciesReference species="AI2" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_AI2_deg</ci><ci>AI2</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Nitrosomonas: amoA+hao, NH4 -> NO2 -->
+      <reaction id="r_nitrosomonas" reversible="false">
+        <listOfReactants>
+          <speciesReference species="NH4" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NO2" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_nitrosomonas</ci><ci>NH4</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Nitrobacter: nxrA, NO2 -> NO3 -->
+      <reaction id="r_nitrobacter" reversible="false">
+        <listOfReactants>
+          <speciesReference species="NO2" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NO3" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_nitrobacter</ci><ci>NO2</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Pseudomonas_stutzeri: narG, NO3 -> NO2 -->
+      <reaction id="r_pseud_narG" reversible="false">
+        <listOfReactants>
+          <speciesReference species="NO3" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NO2" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_pseud_narG</ci><ci>NO3</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Pseudomonas_stutzeri: nirS, NO2 -> NO -->
+      <reaction id="r_pseud_nirS" reversible="false">
+        <listOfReactants>
+          <speciesReference species="NO2" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="NO" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_pseud_nirS</ci><ci>NO2</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Paracoccus_denitrificans: norB, NO -> N2O -->
+      <reaction id="r_parac_norB" reversible="false">
+        <listOfReactants>
+          <speciesReference species="NO" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="N2O" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_parac_norB</ci><ci>NO</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Paracoccus_denitrificans: nosZ, N2O -> N2 -->
+      <reaction id="r_parac_nosZ" reversible="false">
+        <listOfReactants>
+          <speciesReference species="N2O" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="N2" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_parac_nosZ</ci><ci>N2O</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- MalonylCoA circuit: fapR/fabH -->
+      <reaction id="r_malCoA" reversible="false">
+        <listOfReactants>
+          <speciesReference species="AcetylCoA" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="MalonylCoA" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_malCoA</ci><ci>AcetylCoA</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Naringenin circuit: TAL/4CL/CHS/CHI -->
+      <reaction id="r_naringenin" reversible="false">
+        <listOfReactants>
+          <speciesReference species="MalonylCoA" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Naringenin" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_naringenin</ci><ci>MalonylCoA</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- Isoprenoid circuit: atoB/HMGS/HMGR -->
+      <reaction id="r_isoprenoid" reversible="false">
+        <listOfReactants>
+          <speciesReference species="AcetylCoA" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Isoprenoid" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_isoprenoid</ci><ci>AcetylCoA</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <!-- BetaCarotene circuit: crtE/crtB/crtI -->
+      <reaction id="r_betacarot" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Isoprenoid" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="BetaCarotene" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_betacarot</ci><ci>Isoprenoid</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
