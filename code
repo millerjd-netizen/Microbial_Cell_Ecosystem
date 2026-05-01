@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import * as Slider from '@radix-ui/react-slider';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { SBMLSimulator } from './components/SBMLSimulator';
 
 type ModuleKey = 'cross_feeding' | 'nitrogen_cycle' | 'electrogenesis' | 'quorum_sensing' | 'kill_switch' | 'metabolite_production';
@@ -76,7 +75,6 @@ export default function App() {
     kill_switch: 0.7,
     metabolite_production: 0.7,
   });
-  const [threshold, setThreshold] = useState(0.5);
 
   // Calculate fitness scores for each circuit
   const getCircuitScore = (circuit: Circuit) => {
@@ -89,10 +87,10 @@ export default function App() {
     score: getCircuitScore(circuit),
   }));
 
-  // Select circuits above threshold
+  // Select circuits above threshold (threshold = 0)
   const preliminarySelected = new Set(
     circuitsWithScores
-      .filter(c => c.score >= threshold)
+      .filter(c => c.score > 0)
       .map(c => c.name)
   );
 
@@ -170,7 +168,6 @@ export default function App() {
           kill_switch: 0.7,
           metabolite_production: 0.7,
         });
-        setThreshold(0.5);
         break;
     }
   };
@@ -237,27 +234,6 @@ export default function App() {
             ))}
           </div>
 
-          <div className="pt-6 border-t border-slate-800 mt-6">
-            <div className="flex justify-between mb-2">
-              <label className="text-sm">Selection threshold</label>
-              <span className="text-sm text-slate-400">
-                {threshold.toFixed(2)}
-              </span>
-            </div>
-            <Slider.Root
-              className="relative flex items-center select-none touch-none w-full h-5"
-              value={[threshold]}
-              onValueChange={([v]) => setThreshold(v)}
-              max={1}
-              step={0.05}
-            >
-              <Slider.Track className="relative grow rounded-full h-1.5 bg-slate-700">
-                <Slider.Range className="absolute rounded-full h-full bg-[#8FD14F]" />
-              </Slider.Track>
-              <Slider.Thumb className="block w-4 h-4 bg-[#8FD14F] rounded-full shadow-lg hover:shadow-xl transition-shadow" />
-            </Slider.Root>
-          </div>
-
           <div className="mt-8 space-y-2">
             <button
               onClick={() => applyPreset('mfc')}
@@ -289,6 +265,9 @@ export default function App() {
         {/* Main Canvas */}
         <main className="flex-1 overflow-y-auto p-8">
           <div className="max-w-7xl mx-auto space-y-8">
+            {/* 33-species ODE Simulator - MOVED TO TOP */}
+            <SBMLSimulator modules={modules} />
+
             {/* Selected Consortium Table */}
             <section className="bg-slate-900/50 rounded-2xl p-6">
               <h3 className="text-lg mb-4">
@@ -368,100 +347,8 @@ export default function App() {
               </div>
             </section>
 
-            {/* Circuit Grid (20 tiles) */}
-            <section>
-              <h3 className="text-lg mb-4">Knox design spaces — 20 circuits</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                {circuitsWithScores.map((circuit) => {
-                  const isSelected = selectedCircuits.has(circuit.name);
-                  return (
-                    <div
-                      key={circuit.id}
-                      className="relative aspect-square rounded-xl overflow-hidden transition-all duration-300"
-                      style={{
-                        opacity: isSelected ? 1 : 0.25,
-                        filter: isSelected ? 'none' : 'grayscale(100%)',
-                        borderWidth: '2px',
-                        borderStyle: 'solid',
-                        borderColor: isSelected
-                          ? MODULE_COLORS[circuit.category]
-                          : '#334155',
-                      }}
-                    >
-                      <img
-                        src={circuit.image}
-                        alt={circuit.name}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-3">
-                        <div className="text-xs truncate font-mono">{circuit.name}</div>
-                      </div>
-                      {isSelected && (
-                        <div className="absolute top-2 right-2">
-                          <div
-                            className="px-2 py-1 rounded text-xs font-medium"
-                            style={{
-                              backgroundColor: MODULE_COLORS[circuit.category],
-                              color: '#000',
-                            }}
-                          >
-                            {circuit.score.toFixed(2)}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-
-            {/* 33-species ODE Simulator */}
-            <SBMLSimulator modules={modules} />
-
-            {/* Bottom Row: Fitness Chart + Ecosystem Summary */}
-            <div className="grid lg:grid-cols-3 gap-8">
-              {/* Per-circuit Fitness Bar Chart */}
-              <section className="lg:col-span-2 bg-slate-900/50 rounded-2xl p-6">
-                <h3 className="text-lg mb-4">Fitness by circuit</h3>
-                <ResponsiveContainer width="100%" height={400}>
-                  <BarChart
-                    data={circuitsWithScores}
-                    layout="horizontal"
-                    margin={{ top: 20, right: 30, left: 120, bottom: 20 }}
-                  >
-                    <XAxis type="number" domain={[0, 1]} tick={{ fill: '#94a3b8' }} />
-                    <YAxis
-                      type="category"
-                      dataKey="name"
-                      tick={{ fill: '#94a3b8', fontSize: 10 }}
-                      width={110}
-                    />
-                    <Tooltip
-                      contentStyle={{
-                        backgroundColor: '#1e293b',
-                        border: '1px solid #334155',
-                        borderRadius: '8px',
-                      }}
-                      labelStyle={{ color: '#e2e8f0' }}
-                    />
-                    <Bar dataKey="score" radius={[0, 4, 4, 0]}>
-                      {circuitsWithScores.map((circuit) => (
-                        <Cell
-                          key={circuit.id}
-                          fill={
-                            selectedCircuits.has(circuit.name)
-                              ? MODULE_COLORS[circuit.category]
-                              : '#475569'
-                          }
-                        />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </section>
-
-              {/* Ecosystem Summary */}
-              <section className="bg-slate-900/50 rounded-2xl p-6">
+            {/* Ecosystem Summary */}
+            <section className="bg-slate-900/50 rounded-2xl p-6">
                 <h3 className="text-lg mb-4">Ecosystem summary</h3>
                 <div className="space-y-3">
                   {(Object.keys(MODULE_LABELS) as ModuleKey[]).map((key) => {
@@ -481,8 +368,7 @@ export default function App() {
                   })}
                 </div>
                 <p className="text-xs text-slate-500 mt-6 leading-relaxed">
-                  Circuit selection driven by module weights ≥ threshold (
-                  {threshold.toFixed(2)}). Dependency closure ensures required
+                  Circuit selection driven by module weights &gt; 0. Dependency closure ensures required
                   base circuits are included.
                 </p>
                 <div className="mt-4 pt-4 border-t border-slate-800">
@@ -492,7 +378,6 @@ export default function App() {
                   </div>
                 </div>
               </section>
-            </div>
           </div>
         </main>
       </div>
