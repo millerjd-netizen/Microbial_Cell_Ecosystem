@@ -4,7 +4,6 @@ Link to GUI =
 
 https://binary-depth-63163549.figma.site/
 
-
 **Spring 2026 · Prof. Douglas Densmore**
 **Team:** Jonathan · Jaleel · William · Nora
 
