@@ -1,24 +1,35 @@
 # 🧬 Microbial Cell Ecosystem — BE/EC 552 Final Project
 
-Link to GUI =  
+<div align="center">
 
-https://binary-depth-63163549.figma.site/
+## 🎛️ [**▶ Launch the Live GUI**](https://binary-depth-63163549.figma.site/)
+
+### *This is the main entry point for the project — start here.*
+
+</div>
+
+---
 
 **Spring 2026 · Prof. Douglas Densmore**
 **Team:** Jonathan · Jaleel · William · Nora
 
-A tunable engineered microbial consortium for MFC-driven wastewater treatment. This repo holds the three deliverables of our project: a Knox-derived genetic circuit library, an interactive tuning GUI, and an iBioSim ecosystem simulation.
+A tunable engineered microbial consortium for MFC-driven wastewater treatment. This repo holds every deliverable of the project: a Knox-derived genetic circuit library, an interactive tuning GUI (web + Jupyter versions), an iBioSim ecosystem simulation, and the supporting documentation.
 
 ---
 
 ## 📁 What's in this repo
 
-| File | What it is |
+| File / Folder | What it is |
 |---|---|
-| `ConsortiumTuner.ipynb` | Interactive Jupyter GUI — 7 sliders, 20-circuit scoring engine |
-| `images/` | 14 Knox design-space screenshots used by the GUI |
-| `whole_ecosystem.xml` | SBML model of the consortium — imports into iBioSim |
-| `README.md` | This file |
+| 🎛️ **[Live GUI ↗](https://binary-depth-63163549.figma.site/)** | **Main deliverable.** Interactive React + TypeScript dashboard — six module sliders, three preset buttons, live GOLDBAR specs, and an embedded SBML simulator running the 33-species ODE model in-browser. Use this link to interact with the project. |
+| `Design ConsortiumTuner Dashboard UI/` | Source code for the live GUI — React + TypeScript + Radix UI components. This is what powers the Figma-hosted site above. |
+| `ConsortiumTuner_v3_fixed.ipynb` | Jupyter version of the tuner. Same 20-circuit library and scoring engine as the GUI, exposed through `ipywidgets` sliders. Best run on a live kernel (Colab, Binder, or local Jupyter); GitHub's static preview can't render the sliders interactively. |
+| `whole_ecosystem.xml` | SBML model of the full consortium (33 species). Authored in iBioSim and consumed by both the GUI's in-browser simulator and the notebook's ODE solver. |
+| `genetic circuits chosen.xlsx` | Catalog of all 20 candidate genetic circuits — names, organisms, modules, and the scoring inputs both the GUI and notebook read from. The source of truth for the circuit library. |
+| `Literature Review.docx` | Background research and citations supporting the project's design choices. |
+| `Microbial_Cell_Ecosystem Final Project Report.pdf` | Full written project report — formal writeup of methodology, results, and conclusions. |
+| `Microbial_Cell_Ecosystem_FinalPresentation.pptx` | Slide deck used for the in-class final presentation. |
+| `README.md` | This file. |
 
 ---
 
